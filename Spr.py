@@ -1,3 +1,5 @@
 import numpy as np
-def spr(E,theta,X):
-    
+
+
+def spread(E, theta, X):
+    return E, theta, X
