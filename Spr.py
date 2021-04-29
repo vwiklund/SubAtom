@@ -1,26 +1,35 @@
 import math
 import numpy as np
 import scipy.constants as sc
+import matplotlib.pyplot as plt
+
 
 def spread(E, theta, X):
+    #Input
+    rh0_ch0 = X[0]
+    a       = X[1]
+    b       = X[2]
+
     # Fysikaliska konstanter
     alpha = sc.alpha
     hbar = sc.hbar
     c = sc.c
 
-    #input
-    E = E
-    theta = theta
-    X = X
-    v = math.sqrt(1)
-    beta = v/sc.c
+
+    v = math.sqrt(c2-(m/E)2c**6)
+    beta = v/c
 
     #Givet från PM
     Zp=1
     Zt=20
 
     #Beräkning
-    dSigmadOmega = (Zp**2*Zt**2*alpha**2*(hbar*c)**2)/(4*beta**2*E**2*math.sin(theta/2)**4)
+    rho_ch = rho_ch0/(1+np.exp((r-a)/b)
+    f = lambda r: rrho_chsin(qr/hbar)
+    Int, error = integrate.quad(f, 0,np.inf)
+    F = 4np.pihbar/(Zeq)Int
+    dSigmadOmega = (Zp**2Zt2*alpha2(hbarc)2)/(4*beta2E**2math.sin(theta/2)4)*(1-beta2math.sin(theta/2)**2)
+    print("beta = ", beta)
     return dSigmadOmega
 c = sc.c
 m = sc.m_e
@@ -38,4 +47,10 @@ sigma = [6.34E-1, 2.77E-1, 1.40E-1, 5.89E-2, 3.25E-2, 1.61E-2, 7.95E-3, 5.32E-3,
 
 for x in range(31):
   print("theta = ", theta[x], "\t \t \t sigma = ", sigma[x], "\t \t \t spr = ", spread(E,theta[x],X),"\t \t \t Procent", spread(E,theta[x],X)/sigma[x])
+
+
+#plt.plot(theta,sigma,"*")
+plt.yscale('log')
+plt.ylabel('some numbers')
+plt.show()
 
