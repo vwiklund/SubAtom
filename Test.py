@@ -1,8 +1,8 @@
-from Spr import spread
-import math
-import numpy as np
 import scipy.constants as sc
 import matplotlib.pyplot as plt
+
+def spr(e,theta,x):
+    return x
 
 c = sc.c
 m = sc.m_e
@@ -17,12 +17,12 @@ sigma = [6.34E-1, 2.77E-1, 1.40E-1, 5.89E-2, 3.25E-2, 1.61E-2, 7.95E-3, 5.32E-3,
                1.19E-3, 8.27E-4, 5.38E-4, 4.71E-4, 4.32E-4, 4.50E-4, 4.82E-4, 4.54E-4, 3.24E-4, 2.11E-4, 1.18E-4,
                6.12E-5, 2.23E-5, 6.50E-6, 1.42E-6, 2.70E-7, 2.13E-7, 3.92E-7, 3.13E-7, 2.21E-7]
 
-for x in range(31):
-  #print("theta = ", theta[x], "\t \t \t sigma = ", sigma[x], "\t \t \t spr = ", spread(E,theta[x],X),"\t \t \t Procent", spread(E,theta[x],X)/sigma[x])
-
-
-#plt.plot(theta,sigma,"*")
-#plt.plot(100,10e-2,"*")
-#plt.yscale('log')
-#plt.ylabel('some numbers')
-#plt.show()
+test = []
+for x in range(len(theta)):
+    test.append(spr(1,2,theta[x]))
+print(test)
+plt.plot(theta,test,"o")
+plt.plot(theta,sigma,"*")
+plt.yscale('log')
+plt.ylabel('some numbers')
+plt.show()
