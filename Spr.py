@@ -11,6 +11,7 @@ def spread(E, theta, X):
     #input
     E = E
     theta = theta
+    X = X
     v = math.sqrt(-(m/E)**2*c**6+c**2)
     beta = v/sc.c
 
@@ -18,6 +19,7 @@ def spread(E, theta, X):
     Zp=1
     Zt=20
 
+    #Beräkning
     dSigmadOmega = (Zp**2*Zt**2*alpha**2*(hbar*c)**2)/(4*beta**2*E**2*math.sin(theta/2)**4)
     return dSigmadOmega
 c = sc.c
