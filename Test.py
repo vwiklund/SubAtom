@@ -1,6 +1,9 @@
 import scipy.constants as sc
 import matplotlib.pyplot as plt
 from Spr import spread
+import numpy as np
+import math
+import scipy.integrate as integrate
 
 c = sc.c
 m = sc.m_e
@@ -17,6 +20,7 @@ sigma = [6.34E-1, 2.77E-1, 1.40E-1, 5.89E-2, 3.25E-2, 1.61E-2, 7.95E-3, 5.32E-3,
 
 X = [0.001,200,0.003]
 test = []
+'''
 for x in range(len(theta)):
     test.append(spread(E,theta[x],X))
 print(test)
@@ -25,3 +29,31 @@ plt.plot(theta,sigma,"*")
 plt.yscale('log')
 plt.ylabel('some numbers')
 plt.show()
+'''
+
+theta = 50
+X = [1,1,1]
+rho_ch0 = X[0]
+a       = X[1]
+b       = X[2]
+
+hbar = sc.hbar
+c = sc.c
+
+v = math.sqrt(c**2-(m/E)**2*c**6)
+beta = v/c
+gamma = 1/math.sqrt(1-v**2/c**2)
+p = m*v*gamma
+#Beräkning
+q = 2*p*math.sin(theta/2)
+
+
+r = np.linspace(0,10,1000)
+f = np.zeros(len(r))
+for i in range(len(r)):
+    f[i] = r[i]*(rho_ch0/(1+np.exp((r[i]-a)/b)))*math.sin(q*r[i]/hbar)
+plt.plot(r,f)
+plt.show()
+f = lambda r: r*(rho_ch0/(1+np.exp((r-a)/b)))*math.sin(q*r/hbar)
+Int, error = integrate.quad(f, 0,np.inf)
+print(Int)
