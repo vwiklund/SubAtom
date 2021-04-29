@@ -21,4 +21,4 @@ rho_0 = 1
 X = np.array([a, b, rho_0])
 
 
-spread(E, theta, X, r)
+spread(E, theta, X)
