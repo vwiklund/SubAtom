@@ -6,3 +6,4 @@ eV = 1.60217662e-19
 M = 9.109e-31
 kB = physconst("Boltzmann")
 alpha = 0.0072973525693
+save physcon
