@@ -17,6 +17,7 @@ def spread(E, theta, X):
 
     # Fysikaliska konstanter
     alpha = sc.alpha
+    print(alpha)
     hbar = sc.hbar
     c = sc.c
     e = sc.e
