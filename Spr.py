@@ -20,7 +20,6 @@ def spread(E, theta, X):
     c = sc.c
     e = sc.e
     m = sc.m_e
-    print(e)
 
     v = math.sqrt(c**2-(m/E)**2*c**6)
     beta = v/c
@@ -32,5 +31,5 @@ def spread(E, theta, X):
     Int, error = integrate.quad(f, 0,np.inf)
     F = 4*np.pi*hbar/(Zt*e*q)*Int
     dSigmadOmega = (Zp**2*Zt**2*alpha**2*(hbar*c)**2)/(4*beta**4*E**2*math.sin(theta/2)**4)*(1-beta**2*math.sin(theta/2)**2)*abs(F)**2
-    print("beta = ", beta,"dSigmadOmega = " ,dSigmadOmega, "Error integral", error)
+    #print("beta = ", beta,"dSigmadOmega = " ,dSigmadOmega, "Error integral", error)
     return dSigmadOmega

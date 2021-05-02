@@ -1,6 +1,7 @@
 import math
 import numpy as np
 from Spr import spread
+import matplotlib.pyplot as plt
 import scipy.constants as sc
 #Given data
 theta = [32.0, 35.0, 37.5, 40.0, 42.0, 44.0, 46.0, 47.0, 48.0, 49.0, 50.0, 51.0, 52.0, 54.0, 55.0, 56.0, 58.0, 60.0, 64.0, 68.0, 72.0, 76.0, 80.0, 85.0, 90.0, 95.0, 100.0, 105.0, 110.0, 115.0, 125.0]
@@ -9,6 +10,7 @@ error = [0.45E-1, 0.20E-1, 0.10E-1, 0.35E-2, 0.30E-2, 0.10E-2, 0.80E-3, 0.50E-3,
 theta = np.array(theta)
 sigma = np.array(sigma)
 error = np.array(error)
+theta = theta*math.pi/180
 
 #Constants
 E = 250e6*sc.eV
@@ -21,4 +23,19 @@ rho_0 = 1
 X = np.array([a, b, rho_0])
 
 
-spread(E, theta, X)
+X = [6,20000000000000000,3]
+test = []
+Xi = []
+for x in range(len(theta)):
+    test.append(spread(E,theta[x],X))
+    Xi = ((spread(E,theta[x],X)-sigma[x])/error[x])**2
+print(test)
+plt.plot(theta,test,"o")
+plt.plot(theta,sigma,"*")
+plt.yscale('log')
+plt.ylabel('some numbers')
+plt.show()
+
+
+Xi2 = math.fsum(Xi)
+print(Xi2)
