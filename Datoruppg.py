@@ -1,6 +1,7 @@
 import math
 import numpy as np
 from Spr import spread
+from Reimann import Riemann_sum
 import matplotlib.pyplot as plt
 import scipy.constants as sc
 #Given data
@@ -15,7 +16,8 @@ theta = theta*math.pi/180
 #Constants
 E = 250e6*sc.eV
 r = 1
-
+Z_t = 20
+Intervall=[0,1000,100000000]
 #Changeble variables
 a = 1
 b = 1
@@ -24,18 +26,25 @@ X = np.array([a, b, rho_0])
 
 
 X = [6,20000000000000000,3]
+A=spread(E,theta[1],X)
+print(A)
 test = []
-Xi = []
+Xi = np.zeros(len(theta))
 for x in range(len(theta)):
     test.append(spread(E,theta[x],X))
-    Xi = ((spread(E,theta[x],X)-sigma[x])/error[x])**2
-print(test)
+    Xi[x] = ((spread(E,theta[x],X)-sigma[x])/error[x])**2
+#print(test)
 plt.plot(theta,test,"o")
 plt.plot(theta,sigma,"*")
 plt.yscale('log')
 plt.ylabel('some numbers')
 plt.show()
 
+Xi        = np.array(Xi)
+eps       = 1e-6
+f         = lambda r: r**2*(X[0]/(1+np.exp((r-X[1])/X[2])))
+Int       = Riemann_sum(f,Intervall[0],Intervall[1],Intervall[2])
+print(Int)
+Condition = ((Z_t-4*np.pi*Int/eps)/eps)**2
+Xi2       = math.fsum(Xi)+Condition
 
-Xi2 = math.fsum(Xi)
-print(Xi2)
