@@ -1,0 +1,7 @@
+    Z_t = 20
+    load physcon
+    eps = 1e-6
+    f = @(r) r.*(1./(1+exp((r-1)./1))).*sind(0.0000000001.*r./hbar)
+    Int = integral(f, 0, inf)
+    %Condition = ((Z_t - 4 * pi * Int / eps) / eps)^2
+    
