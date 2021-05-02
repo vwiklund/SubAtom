@@ -4,6 +4,7 @@ from Spr import spread
 import numpy as np
 import math
 import scipy.integrate as integrate
+from Reimann import Riemann_sum
 
 c = sc.c
 m = sc.m_e
@@ -22,6 +23,15 @@ theta = theta*math.pi/180
 X = [6000,20000000000000000,300]
 test = []
 
+X = [1,1,1]
+Intervall=[0,100,100]
+q = 2.672137391491194e-19
+f         = lambda r: r*(1/(1+np.exp((r-1)/1)))*math.sin(q*r/hbar)
+Int       = Riemann_sum(f,Intervall[0],Intervall[1],Intervall[2])
+print(Int)
+
+
+'''
 for x in range(len(theta)):
     test.append(spread(E,theta[x],X))
 print(test)
@@ -30,7 +40,7 @@ plt.plot(theta,sigma,"*")
 plt.yscale('log')
 plt.ylabel('some numbers')
 plt.show()
-
+'''
 '''
 theta = 50
 X = [1,1,1]

@@ -27,13 +27,12 @@ def spread(E, theta, X):
     gamma = 1/math.sqrt(1-v**2/c**2)
     p = m*v*gamma
     #Beräkning
-    Intervall = [0, 1000, 100000000]
-    q = 2*p*math.sin(theta/2)
-    f = lambda r: r*(rho_ch0/(1+np.exp((r-a)/b)))*math.sin(q*r/hbar)
+    Intervall = [0, 50, 100]
+    q = 2*p*np.sin(theta/2)
+    f = lambda r: r*(rho_ch0/(1+np.exp((r-a)/b)))*np.sin(q*r/hbar)
     Int = Riemann_sum(f,Intervall[0],Intervall[1],Intervall[2])
     #Int, error = integrate.quad(f, 0,np.inf)
     F = 4*np.pi*hbar/(Zt*e*q)*Int
     dSigmadOmega = (Zp**2*Zt**2*alpha**2*(hbar*c)**2)/(4*beta**4*E**2*math.sin(theta/2)**4)*(1-beta**2*math.sin(theta/2)**2)*abs(F)**2
-    print(dSigmadOmega)
     #print("beta = ", beta,"dSigmadOmega = " ,dSigmadOmega, "Error integral", error)
     return dSigmadOmega
