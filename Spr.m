@@ -7,11 +7,11 @@ function spread = Spr(E,theta,X)
 
     Zp=1;
     Zt=20;
-    v=sqrt(c^2-(m/E)^2*c^6)
-    beta=v/c
-    gamma = 1/(sqrt(1-v^2/c^2))
+    v=sqrt(c^2-(m/E)^2*c^6);
+    beta=v/c;
+    gamma = 1/(sqrt(1-v^2/c^2));
     p=m*v*gamma;
-    q=2*p*sind(theta/2)
+    q=2*p*sind(theta/2);
     f= @(r) r.*(rho_ch0./(1+exp((r-a)/b))).*sind(q.*r./hbar);
     Int= integral(f,0,inf);
     F = 4*pi*hbar/(Zt*eV*q)*Int;
